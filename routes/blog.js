@@ -16,7 +16,7 @@ module.exports = dbClient => {
 
   router.get('/posts/:slug', function(req, res, next) {
     const text = 'SELECT p0."id", p0."title", p0."header_image", p0."raw_md", p0."slug", p0."inserted_at", p0."updated_at" FROM "posts" AS p0 WHERE (p0."slug" = $1)'
-    const values = ["home"]
+    const values = [req.params.slug]
 
     dbClient.query(text, values)
       .then(dbRes => {
